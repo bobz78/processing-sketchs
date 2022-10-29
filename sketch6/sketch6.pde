@@ -1,14 +1,16 @@
 PVector branchS;
 
+//changing these values will give you different results (change in recursive function)
+//not here. *you can also change m,n in the recursive functions.
 int offsetb;
 int offsetH;
 int c;
 int d;
 int s;
 int r;
+//------------------------------------------------------------------------------------
 
-int time;
-int waitTime = 2000;
+
 
 void setup(){
   size(500,500); 
@@ -26,7 +28,7 @@ void setup(){
 
 void draw(){
   
-  stroke(165, 242, 243, int(random(80,255)));
+  stroke(165, 242, 243, int(random(100,255)));
   
   if(frameCount<50){
     strokeWeight(0.5*frameCount);
