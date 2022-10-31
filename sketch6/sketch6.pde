@@ -100,15 +100,22 @@ void recursiveH(int a, int b){
     line(lineStart.x,lineStart.y,lineStart.x+140,lineStart.y);
     line(lineStart.x,lineStart.y,lineStart.x-140,lineStart.y);
     adder = 0;
+    
+    //*||change first value "4" to add more branches
     recursiveH(4,1);
     adder = 0;
+    //*||
     recursiveH(4,-1);
+    //*||
     recursive(4,-1,-1);
     offset = -10;
+    //*||
     recursive(4,1,1);
     offset = -10;
+    //*||
     recursive(4,-1,1);
     offset = -10;
+    //*||
     recursive(4,1,-1);
     offset = -10;
   }
