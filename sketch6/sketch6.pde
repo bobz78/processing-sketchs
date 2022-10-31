@@ -1,43 +1,30 @@
 PVector lineStart;
 int offset;
+PVector lineLengthH;
 PVector lineLength;
 float olx1,oly1 , olx2,oly2;
 float olx1h,oly1h , olx2h,oly2h;
-int adder;;
+int adder;
+int rand;
 
 void setup(){
   size(1200,800); 
   background(0);
-  
-  adder = 0;
-  lineStart = new PVector(random(200,width-200),random(200,height-200));
-  offset = -10;
-  lineLength = new PVector(10,30);
-  
-  olx1 = lineStart.x+offset;
-  oly1 = lineStart.y+offset;  
-  olx2 = olx1+lineLength.x;
-  oly2 = oly1+lineLength.y;
-  
-  olx1h = lineStart.x;
-  oly1h = lineStart.y;
-  olx2h = olx1h;
-  oly2h = oly1h;
 }
 
 void draw(){
-  
-  strokeWeight(3);
-  //if(frameCount<50){
-  //  strokeWeight(0.5*frameCount);
-  //}
+  //*|| change this for a compeletly new look
   background(0);
+  //*|| change this for a compeletly new look
   
+  
+  //*||
   for(int i=0;i<30;++i){
     snowFlake s = new snowFlake(int(random(50,width-50)),int(random(50,height-50)));
     s.showSnowFlake();
   }
   
+  //*||
   delay(800);
   
 }
@@ -49,12 +36,17 @@ void draw(){
 class snowFlake{
   
   snowFlake(int xpos,int ypos){
+    //*||
     stroke(165, 242, 243, random(100,255));
+    //*||
     strokeWeight(random(0.5,5));
     adder = 0;
     lineStart = new PVector(xpos,ypos);
     offset = -10;
-    lineLength = new PVector(10,30);
+    //*||
+    lineLength = new PVector(int(random(5,10)),int(random(20,40)));
+    //*||
+    rand = int(random(5,15));
     olx1 = lineStart.x+offset;
     oly1 = lineStart.y+offset;  
     olx2 = olx1+lineLength.x;
@@ -87,14 +79,14 @@ class snowFlake{
   }
 
 void recursiveH(int a, int b){
+  
     if(a>0){
       olx1h = lineStart.x;
       oly1h = lineStart.y;
       olx2h = olx1h;
       oly2h = oly1h;
-      line((olx1h+10*b)+(adder*b),oly1h,olx2h+40*b+adder*b,oly2h-13);
-      line((olx1h+10*b)+(adder*b),oly1h,olx2h+40*b+adder*b,oly2h+13);
-      print();
+      line((olx1h+10*b)+(adder*b),oly1h,olx2h+40*b+adder*b,oly2h-rand);
+      line((olx1h+10*b)+(adder*b),oly1h,olx2h+40*b+adder*b,oly2h+rand);
       adder += 30;
       recursiveH(a-1,b);
    }
@@ -121,4 +113,3 @@ void recursiveH(int a, int b){
     offset = -10;
   }
 }
-
