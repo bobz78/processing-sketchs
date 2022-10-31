@@ -13,9 +13,9 @@ void setup(){
 }
 
 void draw(){
-  //*|| change this for a compeletly new look
+  //*|| change this by commenting it out for a compeletly new look
   background(0);
-  //*|| change this for a compeletly new look
+  //*|| change this by commenting it out for a compeletly new look
   
   
   //*||
