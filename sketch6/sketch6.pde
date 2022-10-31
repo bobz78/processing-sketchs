@@ -1,93 +1,124 @@
-PVector branchS;
-
-//changing these values will give you different results (change in recursive function)
-//not here. *you can also change m,n in the recursive functions.
-int offsetb;
-int offsetH;
-int c;
-int d;
-int s;
-int r;
-//------------------------------------------------------------------------------------
-
-
+PVector lineStart;
+int offset;
+PVector lineLength;
+float olx1,oly1 , olx2,oly2;
+float olx1h,oly1h , olx2h,oly2h;
+int adder;;
 
 void setup(){
-  size(500,500); 
+  size(1200,800); 
   background(0);
   
-  offsetb = 10;
-  offsetH = 20;
-  c = 20;
-  d = 40;
-  s = 15;
-  r = 30;
+  adder = 0;
+  lineStart = new PVector(random(200,width-200),random(200,height-200));
+  offset = -10;
+  lineLength = new PVector(10,30);
   
-  branchS = new PVector(width/2,height/2);
+  olx1 = lineStart.x+offset;
+  oly1 = lineStart.y+offset;  
+  olx2 = olx1+lineLength.x;
+  oly2 = oly1+lineLength.y;
+  
+  olx1h = lineStart.x;
+  oly1h = lineStart.y;
+  olx2h = olx1h;
+  oly2h = oly1h;
 }
 
 void draw(){
   
-  stroke(165, 242, 243, int(random(100,255)));
-  
-  if(frameCount<50){
-    strokeWeight(0.5*frameCount);
-  }
-  
+  strokeWeight(3);
+  //if(frameCount<50){
+  //  strokeWeight(0.5*frameCount);
+  //}
   background(0);
-
   
-  line(branchS.x,branchS.y,width/2+100,height/2-100);
-  line(branchS.x,branchS.y,width/2-100,height/2+100);
-  line(branchS.x,branchS.y,width/2+100,height/2+100);
-  line(branchS.x,branchS.y,width/2-100,height/2-100);
-  line(branchS.x,branchS.y,width/2-150,height/2);
-  line(branchS.x,branchS.y,width/2+150,height/2);
+  for(int i=0;i<30;++i){
+    snowFlake s = new snowFlake(int(random(50,width-50)),int(random(50,height-50)));
+    s.showSnowFlake();
+  }
   
+  delay(800);
   
-    
-  recBranch(4,1,1);
-  resetValues();
-  recBranch(4,-1,-1);
-  resetValues();
-  recBranch(4,1,-1);
-  resetValues();
-  recBranch(4,-1,1);
-  recBranchHoriz(4,1);
-  resetValues();
-  recBranchHoriz(4,-1);
-  
-  delay(1000);
 }
 
 
 
-void recBranch(int a, int n, int m){
+
+
+class snowFlake{
   
+  snowFlake(int xpos,int ypos){
+    stroke(165, 242, 243, random(100,255));
+    strokeWeight(random(0.5,5));
+    adder = 0;
+    lineStart = new PVector(xpos,ypos);
+    offset = -10;
+    lineLength = new PVector(10,30);
+    olx1 = lineStart.x+offset;
+    oly1 = lineStart.y+offset;  
+    olx2 = olx1+lineLength.x;
+    oly2 = oly1+lineLength.y;
+    olx1h = lineStart.x;
+    oly1h = lineStart.y;
+    olx2h = olx1h;
+    oly2h = oly1h;
+  }
+  
+  void recursive(int a, int n, int m){
   if(a>0){
-    line(branchS.x+(offsetb*n),branchS.y+(offsetb*m),width/2+(c*n),height/2+(d*m));
-    line(branchS.x+(offsetb*n),branchS.y+(offsetb*m),width/2+(d*n),height/2+(c*m));
-    offsetb = offsetb+20;
-    c += int(random(12,28));
-    d += int(random(12,28));
-    recBranch(a-1,n,m);
+    offset += 20;
+    olx1 = lineStart.x+offset*n;
+    oly1 = lineStart.y+offset*n*m;  
+    float holder = lineLength.x;
+    lineLength.x = lineLength.y;
+    lineLength.y = holder;
+    olx2 = olx1+lineLength.x*n;
+    oly2 = oly1+lineLength.y*n*m;
+    line(olx1,oly1,olx2,oly2);
+    holder = lineLength.x;
+    lineLength.x = lineLength.y;
+    lineLength.y = holder;
+    olx2 = olx1+lineLength.x*n;
+    oly2 = oly1+lineLength.y*n*m;
+    line(olx1,oly1,olx2,oly2);
+    recursive(a-1,n,m);
+   }
+  }
+
+void recursiveH(int a, int b){
+    if(a>0){
+      olx1h = lineStart.x;
+      oly1h = lineStart.y;
+      olx2h = olx1h;
+      oly2h = oly1h;
+      line((olx1h+10*b)+(adder*b),oly1h,olx2h+40*b+adder*b,oly2h-13);
+      line((olx1h+10*b)+(adder*b),oly1h,olx2h+40*b+adder*b,oly2h+13);
+      print();
+      adder += 30;
+      recursiveH(a-1,b);
+   }
+  }
+  
+  void showSnowFlake(){
+    line(lineStart.x,lineStart.y,lineStart.x+100,lineStart.y+100); 
+    line(lineStart.x,lineStart.y,lineStart.x+100,lineStart.y-100);
+    line(lineStart.x,lineStart.y,lineStart.x-100,lineStart.y+100);
+    line(lineStart.x,lineStart.y,lineStart.x-100,lineStart.y-100);
+    line(lineStart.x,lineStart.y,lineStart.x+140,lineStart.y);
+    line(lineStart.x,lineStart.y,lineStart.x-140,lineStart.y);
+    adder = 0;
+    recursiveH(4,1);
+    adder = 0;
+    recursiveH(4,-1);
+    recursive(4,-1,-1);
+    offset = -10;
+    recursive(4,1,1);
+    offset = -10;
+    recursive(4,-1,1);
+    offset = -10;
+    recursive(4,1,-1);
+    offset = -10;
   }
 }
 
-void recBranchHoriz(int a,int n){
-  if(a>0){
-    line(branchS.x+(offsetH*n),branchS.y,width/2+r*n+(offsetH*n),height/2-s);
-    line(branchS.x+(offsetH*n),branchS.y,width/2+r*n+(offsetH*n),height/2+s);
-    s = int(random(1,15));
-    r = int(random(10,30));
-    offsetH += 30;
-    recBranchHoriz(a-1,n);
-  }
-}
-
-void resetValues(){
-  offsetb = 10;
-  offsetH = 20;
-  c = 20;
-  d = 40;
-}
