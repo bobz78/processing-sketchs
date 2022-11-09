@@ -7,7 +7,6 @@ int countCells = 0;
 boolean cellKeepsLiving = false;
 boolean cellComesAlive = false;
 
-int cunt;
 
 void setup(){
   size(1000,1000);
