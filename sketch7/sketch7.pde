@@ -14,19 +14,19 @@ void setup(){
   image(world,0,0);
   world.loadPixels();
   
-  for(int i=0;i<2500;++i){
+  for(int i=0;i<4500;++i){
    world.set(int(random(100,500)),int(random(100,500)),color(255));
  }
  
- for(int i=0;i<2500;++i){
+ for(int i=0;i<4500;++i){
    world.set(int(random(500,900)),int(random(500,900)),color(255));
  }
  
- for(int i=0;i<2500;++i){
+ for(int i=0;i<4500;++i){
    world.set(int(random(100,500)),int(random(500,900)),color(255));
  }
  
- for(int i=0;i<2500;++i){
+ for(int i=0;i<4500;++i){
    world.set(int(random(500,900)),int(random(100,500)),color(255));
  }
  
