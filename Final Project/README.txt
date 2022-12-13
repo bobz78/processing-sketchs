@@ -19,7 +19,7 @@ and you can drag your mouse through it to add a wind effect to it and make it
 look like a fire and smoke effect creating the course name "MATH ARE CODE" 
 the second mode is just the fluid simulation where you can hold/drage 
 left mouse botton and creat smoke as well as change its color by pressing 
-the right mouse botton.the third mode you can click anywhere on the screen
+the "c" botton.the third mode you can click anywhere on the screen
 and you will spawn a smoke particle. you can also higher "N" value and lower 
 "scale" for a higher resolution you can also higher "iter" for more accurate 
 simulation and generaly you can change density and velocity value for 
