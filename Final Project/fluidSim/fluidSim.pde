@@ -22,7 +22,7 @@ void draw(){
   }
   if(inMode3){
     for(int i =0;i<arrx.length;++i){
-        fluid.addDensity(arrx[i],arry[i],600);
+        fluid.addDensity(arrx[i],arry[i],300);
         fluid.addVelocity(arrx[i],arrx[i],(4),(0.1));
     }
   }
