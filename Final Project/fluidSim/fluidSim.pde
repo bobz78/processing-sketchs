@@ -53,6 +53,8 @@ void reset1(){
       inMode3 = false;
       controlDens = 0;
       velocityScaler = 1;
+      arrx = new int[0];
+      arry = new int[0];
     }
   }
 }
@@ -66,6 +68,8 @@ void reset2(){
       inMode3 = false;
       controlDens = 500;
       velocityScaler = 1;
+      arrx = new int[0];
+      arry = new int[0];
     }
   }
 }
