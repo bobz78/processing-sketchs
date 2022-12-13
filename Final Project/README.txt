@@ -13,12 +13,15 @@ rotate correctly.
 The other one is a fluid simulation this one was very compilcated but I 
 finally managed to get it work (credit to: Mike Ash Fluid Simulation for 
 Dummies) I managed to get it work using the above mentioned resource.there is 
-two different modes you can switch between by pressing "1"for mode1(default 
-mode) and "2" for mode2 mode1 has the name of the course and you can drag your
-mouse through it to add a wind effect to it and make it look like a fire and 
-smoke effect creating the course name "MATH ARE CODE" the second mode is just 
-the fluid simulation where you can hold/drage left mouse botton and creat 
-smoke as well as change its color by pressing the right mouse botton. 
-you can also higher "N" value and lower "scale" for a higher resolution
-you can also higher "iter" for more accurate simulation and generaly
-you can change density and velocity value for different fluid sims.
+three different modes you can switch between by pressing "1"for mode1(default 
+mode) and "2" for mode2 and "3" for mode3. mode1 has the name of the course 
+and you can drag your mouse through it to add a wind effect to it and make it 
+look like a fire and smoke effect creating the course name "MATH ARE CODE" 
+the second mode is just the fluid simulation where you can hold/drage 
+left mouse botton and creat smoke as well as change its color by pressing 
+the right mouse botton.the third mode you can click anywhere on the screen
+and you will spawn a smoke particle. you can also higher "N" value and lower 
+"scale" for a higher resolution you can also higher "iter" for more accurate 
+simulation and generaly you can change density and velocity value for 
+different fluid sims. you can also change fade() method value from 1 to
+a higher or lower value to make the smoke disapier faster or slower.
