@@ -20,6 +20,12 @@ void draw(){
   if(inMode1){
     MATH();ART();CODE();
   }
+  if(inMode3){
+    for(int i =0;i<arrx.length;++i){
+        fluid.addDensity(arrx[i],arry[i],600);
+        fluid.addVelocity(arrx[i],arrx[i],(4),(0.1));
+    }
+  }
   
   
   fluid.stepFunc();
@@ -27,8 +33,15 @@ void draw(){
   fluid.fade();
   reset1();
   reset2();
-  rightMouse();
+  reset3();
 }
+
+
+
+
+
+
+
 
 boolean inMode1 = true;
 void reset1(){
@@ -37,7 +50,9 @@ void reset1(){
       fluid = new Fluid(0.1,0,0);
       inMode1 = true;
       inMode2 = false;
+      inMode3 = false;
       controlDens = 0;
+      velocityScaler = 1;
     }
   }
 }
@@ -48,7 +63,22 @@ void reset2(){
       fluid = new Fluid(0.1,0,0);
       inMode1 = false;
       inMode2 = true;
+      inMode3 = false;
       controlDens = 500;
+      velocityScaler = 1;
+    }
+  }
+}
+boolean inMode3 = false;
+void reset3(){
+  if(keyPressed){
+    if(key == '3'){
+      fluid = new Fluid(0.1,0,0);
+      inMode1 = false;
+      inMode2 = false;
+      inMode3 = true;
+      controlDens = 500;
+      velocityScaler = 0;
     }
   }
 }
@@ -218,17 +248,31 @@ void O(int Xoffset, int Yoffset){
 
 
 
-
+int velocityScaler = 1;
 void mouseDragged(){
-  fluid.addDensity(mouseX/scale,mouseY/scale,controlDens);
+  if(!inMode3){
+    fluid.addDensity(mouseX/scale,mouseY/scale,controlDens);
+  }
   float amountX = mouseX - pmouseX;
   float amountY = mouseY - pmouseY;
-  fluid.addVelocity(mouseX/scale,mouseY/scale,amountX-0.5,amountY-0.5);
+  fluid.addVelocity(mouseX/scale,mouseY/scale,(amountX-0.5)*velocityScaler,(amountY-0.5)*velocityScaler);
 }
 
+
+int[] arrx = new int[0];
+int[] arry = new int[0]; 
+
+void mousePressed(){
+  if(inMode3){
+    arrx = append(arrx,mouseX/scale);
+    arry = append(arry,mouseY/scale);
+  }
+}
+
+
 int count = 0;
-void rightMouse(){
-  if(mousePressed && (mouseButton == RIGHT)){
+void keyReleased(){
+  if(key == 'c'){
       ++count;
   }
   if(count>=5){
@@ -385,6 +429,11 @@ class Fluid{
           if(count==4){
             fill(d,0,d);
           }
+        }
+        
+        
+        if(inMode3){
+          fill(d);
         }
         
         noStroke();
